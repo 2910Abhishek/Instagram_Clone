@@ -7,9 +7,14 @@ import 'package:instagram_clone/responsive/web_screen_layout.dart';
 import 'package:instagram_clone/screens/login_screen.dart';
 import 'package:instagram_clone/screens/signup_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
   // if (kIsWeb) {
   //   await Firebase.initializeApp(
   //     options: const FirebaseOptions(
@@ -22,6 +27,16 @@ void main() async {
   // } else {
   //   await Firebase.initializeApp();
   // }
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    print('Error initializing Firebase: $e');
+    // Handle error (e.g., show an error message to the user)
+    return;
+  }
 
   runApp(const MyApp());
 }

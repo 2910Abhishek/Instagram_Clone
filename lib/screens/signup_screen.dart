@@ -121,8 +121,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 // login button
                 InkWell(
+                  onTap: () {
+                    String res = AuthMethods()
+                        .signUpUser(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                            username: _usernameController.text,
+                            bio: _bioController.text)
+                        .toString();
+                    print(res);
+                  },
                   child: Container(
-                    child: const Text('Log In'),
+                    child: const Text('Sign Up'),
                     width: double.infinity,
                     alignment: Alignment.center,
                     padding: const EdgeInsets.symmetric(vertical: 12),
@@ -151,16 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                     GestureDetector(
-                      onTap: () async {
-                        String res = AuthMethods()
-                            .signUpUser(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                                username: _usernameController.text,
-                                bio: _bioController.text)
-                            .toString();
-                        print(res);
-                      },
+                      onTap: () async {},
                       child: Container(
                         child: Text(
                           "Sign up.",
